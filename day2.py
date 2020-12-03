@@ -31,7 +31,5 @@ def countValidPasswords2(passwordLines):
 
 
 passwordLines = readInput(sys.argv[1])
-valid1 = countValidPasswords1(passwordLines)
-print(valid1)
-valid2 = countValidPasswords2(passwordLines)
-print(valid2)
+print(countValidPasswords1(passwordLines))
+print(countValidPasswords2(passwordLines))
