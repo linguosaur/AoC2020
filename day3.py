@@ -21,6 +21,6 @@ def countTreesOnRoute(treemap, rightStep, downStep):
 	
 
 treemap = readInput(sys.argv[1])
-numTrees = countTreesOnRoute(treemap,3,1)
-print(numTrees)
-print(countTreesOnRoute(treemap,1,1)*countTreesOnRoute(treemap,3,1)*countTreesOnRoute(treemap,5,1)*countTreesOnRoute(treemap,7,1)*countTreesOnRoute(treemap,1,2))
+numTreesPart1 = countTreesOnRoute(treemap,3,1)
+print(numTreesPart1)
+print(countTreesOnRoute(treemap,1,1)*numTreesPart1*countTreesOnRoute(treemap,5,1)*countTreesOnRoute(treemap,7,1)*countTreesOnRoute(treemap,1,2))
