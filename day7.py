@@ -11,7 +11,7 @@ def parseRule(rule):
 		groups = match.groups()
 		outerBag = groups[0]
 		if groups[1] != None:
-			innerBagsTuples.add((int(groups[1]), groups[2]))
+			#innerBagsTuples.add((int(groups[1]), groups[2]))
 			for i in range(len(match.captures(2))):
 				innerBagsTuples.add((int(match.captures(2)[i]), match.captures(3)[i]))
 		if groups[3] != 'no':
