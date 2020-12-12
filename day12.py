@@ -10,14 +10,14 @@ def readInput(filename):
 def getNewHeading(turn, degrees, oldHeading):
 	return HEADINGS[int((HEADINGS.index(oldHeading) + (2*int(turn=='R')-1)*degrees/90) % len(HEADINGS))]
 
-def getNewLoc1(command, dist, oldLoc, heading):
+def getNewLoc1(command, dist, loc, heading):
 	direction = command 
 	if command == 'F':
 		direction = heading
 
-	oldx, oldy = oldLoc
-	dirx, diry = HEADINGS_TO_COORDS[direction]
-	return (oldx + dirx*dist, oldy + diry*dist)
+	x, y = loc
+	dx, dy = HEADINGS_TO_COORDS[direction]
+	return (x + dx*dist, y + dy*dist)
 
 def runInstructions1(instructions, loc, heading):
 	for instruction in instructions:
