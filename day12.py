@@ -68,8 +68,6 @@ initLoc, initHeading = (0,0), 'E'
 finalLoc, heading = runInstructions1(instructions, initLoc, initHeading)
 print(getManhattanDist(initLoc, finalLoc))
 
-print()
-
 initHeading = (10,1)
 finalLoc, finalWaypoint = runInstructions2(instructions, initLoc, initHeading)
 print(getManhattanDist(initLoc, finalLoc))
