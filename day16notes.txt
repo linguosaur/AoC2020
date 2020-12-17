@@ -1,0 +1,34 @@
+Case 1:
+
+old:            low                      high
+new:	            low          high
+
+result: no change
+
+Case 2:
+
+old:            low                      high
+new:      low                    high
+
+result:   low                            high
+
+Case 3:
+
+old:            low                      high
+new:                 low                        high
+
+result:         low                             high
+
+Case 4:
+
+old:            low                      high
+new:      low                                   high
+
+result:   low                                   high
+
+Case 5:
+
+old:            low                      high
+new:                                             low      high
+
+result:         low                      high    low      high
