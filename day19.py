@@ -61,7 +61,7 @@ def prune(derivations, message):
 		else:
 			i += 1
 
-def derivesMessage(startingRuleLabel, rules, message):
+def getMessages(startingRuleLabel, rules):
 	oldDerivations, newDerivations = rules[startingRuleLabel], None
 	while newDerivations != [] and newDerivations != oldDerivations:
 		if newDerivations != None:
@@ -71,19 +71,42 @@ def derivesMessage(startingRuleLabel, rules, message):
 		for expansion in alternateExpansions:
 			newDerivations += getDerivations(expansion)
 
-		prune(newDerivations, message)
-	
-	return len(newDerivations) > 0
+	return [''.join(messages) for messages in newDerivations]
 
-def countMatchingMessages(startingRuleLabel, rules, messages):
+def countMatches(rules, messages, mode):
+	matches42, matches31 = getMessages(42, rules), getMessages(31, rules)
+	componentLen = len(matches42[0]) # all of them are the same length, it turns out
+
 	count = 0
 	for message in messages:
-		derives = derivesMessage(startingRuleLabel, rules, message)
-		print(derives)
-		if derives:	count += 1
+		num42s, num31s = 0, 0
+		if len(message) % componentLen == 0:
+			fits0, contiguous42s = True, True
+			for i in range(int(len(message)/componentLen)):
+				section = message[i*componentLen:(i+1)*componentLen]
+				if section in matches42:
+					if num31s == 0:
+						num42s += 1
+					else:
+						contiguous42s = False
+						break
+				elif section in matches31:
+					num31s += 1
+				else: 
+					fits0 = False
+					break
+
+			if fits0 and contiguous42s:
+				if mode == 1:
+					if (num42s, num31s) == (2, 1):
+						count += 1
+				elif mode == 2:
+					if num42s >= 2 and num31s >= 1 and num42s > num31s:
+						count += 1
 
 	return count
 
+
 rules, messages = readInput(sys.argv[1])
-print('rules:', rules)
-print(countMatchingMessages(0, rules, messages))
+print(countMatches(rules, messages, 1))
+print(countMatches(rules, messages, 2))
